@@ -39,6 +39,9 @@ let year: Int = 1991
 let height: Double = 1.75
 let taylorRocks: Bool = true
 
+
+var title = "swift学习第一天"
+
 //Summary
 /**
  * 1.创建变量使用 var，创建常量使用 let，最好尽可能使用常量。
