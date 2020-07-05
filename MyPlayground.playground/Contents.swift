@@ -156,4 +156,91 @@ var title = "swift学习第2天"
  * 7.可以将原始值附加到枚举，以便可以从整数或字符串创建这些值，也可以添加关联值以存储有关每个事例的附加信息。
  */
 
+//第3天 7.5 3/100
+//操作运算符&条件表达式
 
+//算数运算符 +-*/ %
+let firstScore = 12
+let secongScore = 4
+
+let total = firstScore + secongScore
+let difference = firstScore - secongScore
+let product = firstScore * secongScore
+let divided = firstScore / secongScore
+let remainder = 13 % secongScore
+
+//操作符重载
+let doubleMeaning = 42 + 42
+let fakers = "Fakers gonna "
+let action = fakers + "fake"
+let firstHalf = ["John", "Paul"]
+let secondHalf = ["George", "Ringo"]
+let beatless = firstHalf + secondHalf
+
+//复合赋值运算符 +-*/ + =
+var scoreM = 95
+scoreM -= 5
+var quote = "The rain in Spain falls mainly on the "
+quote += "Spanards"
+
+//比较运算符
+firstScore == secongScore
+firstScore != secongScore
+firstScore < secongScore
+firstScore >= secongScore
+"Taylor" <= "Swift"
+
+//条件表达式
+let firstCard = 11
+let secondCard = 10
+if firstCard + secondCard == 21 {
+    print("Blackjack!")
+} else if firstCard + secondCard == 2 {
+    print("Aces – lucky!")
+} else {
+    print("Regular cards")
+}
+//条件结合-逻辑运算符
+if firstCard > 10 && secondCard > 10 {
+    print("Both are over 10")
+}
+if firstCard > 10 || secondCard > 10 {
+    print("At least one is over 10")
+}
+
+//三元运算符
+print(secondCard == firstCard ? "Cards are the same" : "Cards are different")
+
+//switch 语句
+let weather = "sunny"
+switch weather {
+case "rain":
+    print("Bring an umbrella")
+case "snow":
+    print("Wrap up warm")
+case "sunny":
+    print("Wear sunscreen")
+    fallthrough
+default:
+    print("Enjoy your day!")
+}
+
+//范围运算符
+switch score {
+case 0..<50:
+    print("You failed badly.")
+case 50...100:
+    print("You did OK.")
+default:
+    print("You did great!")
+}
+
+//Summary
+/**
+ * 1.Swift有做算术和比较的操作符；它们的工作方式和你已经知道的差不多。
+ * 2.有算术运算符的复合变体，它们可以就地修改它们的变量：+=、-=，等等。
+ * 3.可以使用if、else和else if根据条件的结果运行代码。
+ * 4.Swift有一个三元运算符，它将check与true和false代码块组合起来。尽管您可能在其他代码中看到它，但我不建议您自己使用它。
+ * 5.如果有多个条件使用同一个值，那么使用switch通常会更清楚。
+ * 6.您可以使用..< 和 ...取决于最后一个数字是应排除还是包括在内。
+ */
