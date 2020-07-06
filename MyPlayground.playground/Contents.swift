@@ -143,7 +143,7 @@ enum Planet: Int {
 let earth = Planet(rawValue: 2)
 
 
-var title = "swift学习第2天"
+var title2 = "swift学习第2天"
 
 //Summary
 /**
@@ -235,12 +235,97 @@ default:
     print("You did great!")
 }
 
+var title = "swift学习第3天"
+
 //Summary
 /**
  * 1.Swift有做算术和比较的操作符；它们的工作方式和你已经知道的差不多。
- * 2.有算术运算符的复合变体，它们可以就地修改它们的变量：+=、-=，等等。
+ * 2.有算术运算符的复合变体，它们就可以修改它们的变量：+=、-=，等等。
  * 3.可以使用if、else和else if根据条件的结果运行代码。
  * 4.Swift有一个三元运算符，它将check与true和false代码块组合起来。尽管您可能在其他代码中看到它，但我不建议您自己使用它。
  * 5.如果有多个条件使用同一个值，那么使用switch通常会更清楚。
  * 6.您可以使用..< 和 ...取决于最后一个数字是应排除还是包括在内。
+ */
+
+//第4天 7.6 4/100
+//循环
+//for 循环
+let count = 1...10
+for number in count {
+    print("Number is \(number)")
+}
+let albums = ["Red", "1989", "Reputation"]
+for album in albums {
+    print("\(album) is on Apple Music")
+}
+print("Players gonna")
+for _ in 1...5 {
+    print("play")
+}
+
+//while
+var number = 1
+while number <= 20 {
+    print(number)
+    number += 1
+}
+print("Ready or not, here I come!")
+
+//repeat
+repeat {
+    print(number)
+    number += 1
+} while number <= 20
+
+//退出循环
+var countDown = 10
+while countDown >= 0 {
+    print(countDown)
+    
+    if countDown == 4 {
+        print("I'm bored. Let's go now!")
+        break
+    }
+    
+    countDown -= 1
+}
+
+//退出多个循环
+outerLoop: for i in 1...10 {
+    for j in 1...10 {
+        let product = i * j
+        print("\(i) * \(j) = \(product)")
+        if product == 50 {
+            break outerLoop
+        }
+    }
+}
+//跳过某一次循环
+for i in 1...10 {
+    if i % 2 == 1 {
+        continue
+    }
+
+    print(i)
+}
+//无限循环
+var counter = 0;
+while true {
+    print("")
+    counter += 1
+    if counter == 273 {
+        break
+    }
+}
+
+//Summary
+/**
+ * 1.循环允许我们重复代码，直到条件为false。
+ * 2.最常见的循环是for，它将循环中的每个项分配给一个临时常量。
+ * 3.如果不需要for循环提供的临时常量，请使用下划线，这样Swift就可以跳过这项工作。
+ * 4.有while循环，您提供了一个显式条件来检查它。
+ * 5.尽管它们类似于while循环，但repeat循环始终至少运行一次循环体。
+ * 6.可以使用break退出单个循环，但如果有嵌套循环，则需要使用break后跟放在外循环之前的标签。
+ * 7.可以使用continue跳过循环中的项。
+ * 8.无限循环不会结束，直到您要求它们结束，并且是使用while true生成的。确保你有条件结束你的无限循环！
  */
