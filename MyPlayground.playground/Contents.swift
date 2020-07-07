@@ -235,7 +235,7 @@ default:
     print("You did great!")
 }
 
-var title = "swift学习第3天"
+var title3 = "swift学习第3天"
 
 //Summary
 /**
@@ -317,6 +317,8 @@ while true {
         break
     }
 }
+
+var title = "swift学习第4天"
 
 //Summary
 /**
