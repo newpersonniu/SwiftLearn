@@ -318,7 +318,7 @@ while true {
     }
 }
 
-var title = "swift学习第4天"
+var title4 = "swift学习第4天"
 
 //Summary
 /**
@@ -330,4 +330,98 @@ var title = "swift学习第4天"
  * 6.可以使用break退出单个循环，但如果有嵌套循环，则需要使用break后跟放在外循环之前的标签。
  * 7.可以使用continue跳过循环中的项。
  * 8.无限循环不会结束，直到您要求它们结束，并且是使用while true生成的。确保你有条件结束你的无限循环！
+ */
+
+//第5天 7.7 5/100
+//函数
+
+//1.写函数
+func printHelp() {
+    let message = """
+Welcome to MyApp!
+
+Run this app inside a directory of images and
+MyApp will resize them all into thumbnails
+"""
+    print(message)
+}
+printHelp()
+
+//2.参数传递
+func squre(number:Int) {
+    print(number * number)
+}
+squre(number: 5)
+
+//3.返回值
+func squre1(number:Int) ->Int {
+    return number * number
+}
+squre1(number: 8)
+
+//4.参数标签
+func sayHello(to name: String) {
+    print("Hello, \(name)!")
+}
+sayHello(to: "Taylor")
+
+//5.省略参数标签
+func greet(_ person: String) {
+    print("Hello, \(person)")
+}
+greet("Taylor")
+
+//6.默认参数
+func greet1(_ person: String, nicely: Bool = true) {
+    if nicely == true {
+        print("Hello1, \(person)!")
+    } else {
+         print("Oh no, it's \(person) again...")
+    }
+}
+greet1("Taylor")
+greet1("Taylor", nicely: false)
+
+//7.可变函数 参数可变：同一类型多个参数
+func squareA(numbers: Int...) {
+    for number in numbers {
+        print("\(number) squared is \(number * number)")
+    }
+}
+squareA(numbers: 1, 2)
+//8.写入异常抛出函数
+enum PasswordError: Error {
+    case obvious
+}
+func checkPassword(_ password: String) throws -> Bool {
+    if password == "password" {
+        throw PasswordError.obvious
+    }
+    return true
+}
+
+//9.运行异常抛出函数
+do {
+    try checkPassword("password")
+    print("That password is good!")
+} catch {
+    print("You can't use that password.")
+}
+//10.输入参数
+func doubleInPlace(number: inout Int) {
+    number *= number
+}
+var myN = 10;
+doubleInPlace(number: &myN)
+
+//Summary
+/**
+ * 1.函数让我们不用重复使用代码。
+ * 2.函数可以接受参数-只需告诉Swift每个参数的类型。
+ * 3.函数可以返回值，同样，您只需指定返回的类型。如果要返回多个值，请使用元组
+ * 4.可以在外部和内部为参数使用不同的名称，也可以完全忽略外部名称。
+ * 5.参数可以有默认值，这有助于通常需要特定值时编写更少的代码。
+ * 6.可变函数接受零个或多个特定参数，Swift将输入转换为数组。
+ * 7.函数可以抛出错误，但必须使用try调用它们，并使用catch处理错误。
+ * 8.可以使用inout更改函数内部的变量，但通常最好返回一个新值。
  */
