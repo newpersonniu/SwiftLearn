@@ -414,6 +414,8 @@ func doubleInPlace(number: inout Int) {
 var myN = 10;
 doubleInPlace(number: &myN)
 
+var title5 = "swift学习第4天"
+
 //Summary
 /**
  * 1.函数让我们不用重复使用代码。
@@ -425,3 +427,41 @@ doubleInPlace(number: &myN)
  * 7.函数可以抛出错误，但必须使用try调用它们，并使用catch处理错误。
  * 8.可以使用inout更改函数内部的变量，但通常最好返回一个新值。
  */
+
+//第6天 7.8 6/100
+//闭包（一）
+//1.创建基本闭包
+let driving = {
+    print("I'm driving in my car")
+}
+driving()
+//2.闭包传参
+let driving1 = { (place: String) in
+    print("I'm going to \(place) in my car")
+}
+driving1("London")
+//3.有返回值的闭包
+let drivingWithReturn = { (place: String) -> String in
+    return "I'm going to \(place) in my car"
+}
+
+let message = drivingWithReturn("London")
+print(message)
+//4.作为参数
+func travel(action: () -> Void) {
+    print("I'm getting ready to go.")
+    action()
+    print("I arrived!")
+}
+travel(action: driving)
+
+//5.尾随闭包语法
+travel() {
+ print("I'm driving in my car")
+}
+travel {
+    print("I'm driving in my car")
+}
+
+var title = "swift学习第6天"
+//Summary
