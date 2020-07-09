@@ -463,5 +463,98 @@ travel {
     print("I'm driving in my car")
 }
 
-var title = "swift学习第6天"
+var title6 = "swift学习第6天"
 //Summary
+//nil
+
+//第7天 7.9 7/100
+//闭包（二）
+//1.使用闭包作为参数时，闭包也接受参数
+func travel7(action: (String) -> Void) {
+    print("I'm getting ready to go.")
+    action("London")
+    print("I arrived!")
+}
+travel7 { (place:String) in
+    print("I'm going to \(place) in my car")
+}
+//2.使用闭包作为参数时，闭包也能够返回值
+func travel7_1(action: (String) -> String) {
+    print("I'm getting ready to go.")
+    let description = action("London")
+    print(description)
+    print("I arrived!")
+}
+travel7_1 { (place: String) -> String in
+    return "I'm going to \(place) in my car"
+}
+
+func manipulate(numbers: [Int], using algorithm: (Int) -> Int) {
+    for number in numbers {
+        let result = algorithm(number)
+        print("Manipulating \(number) produced \(result)")
+    }
+}
+manipulate(numbers: [1, 2, 3]) { number in
+    return number * number
+}
+
+//3.简写参数名
+travel7_1 { place in
+    return "I'm going to \(place) in my car"
+}
+//由于闭包只有一行必须是返回值的代码行，所以Swift也允许我们删除return关键字
+travel7_1 { place in
+      "I'm going to \(place) in my car"
+}
+//Swift提供闭包参数的自动名称,这些是用美元符号命名的，然后是从0开始的数字。
+travel7_1 {
+     "I'm going to \($0) in my car"
+}
+
+//4.多个参数的闭包
+func travel72(action: (String, Int) -> String) {
+    print("I'm getting ready to go.")
+    let description = action("London", 60)
+    print(description)
+    print("I arrived!")
+}
+travel72 {
+    "I'm going to \($0) at \($1) miles per hour."
+}
+
+//5.闭包作为函数返回值
+func travel73() -> (String) -> Void {
+    return {
+        print("I'm going to \($0)")
+    }
+}
+
+let result7 = travel73()
+result7("London")
+travel73()("London")
+
+//6.捕获值
+func travel76() -> (String) -> Void {
+    var counter = 1
+    
+    return {
+        print("\(counter). I'm going to \($0)")
+        counter += 1
+    }
+}
+
+let counterR = travel76()
+counterR("London")
+counterR("London")
+counterR("London")
+
+//Summary
+/**
+ * 1.您可以为变量分配闭包，然后在以后调用它们。
+ * 2.闭包可以接受参数和返回值，就像常规函数一样。
+ * 3.可以将闭包作为参数传递到函数中，这些闭包可以有自己的参数和返回值。
+ * 4.如果函数的最后一个参数是闭包，则可以使用尾部闭包语法。
+ * 5.Swift自动提供诸如$0和$1之类的速记参数名，但并非所有人都使用它们。
+ * 6.如果在闭包中使用外部值，那么将捕获这些值，以便闭包稍后可以引用它们。
+ */
