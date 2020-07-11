@@ -489,16 +489,6 @@ travel7_1 { (place: String) -> String in
     return "I'm going to \(place) in my car"
 }
 
-func manipulate(numbers: [Int], using algorithm: (Int) -> Int) {
-    for number in numbers {
-        let result = algorithm(number)
-        print("Manipulating \(number) produced \(result)")
-    }
-}
-manipulate(numbers: [1, 2, 3]) { number in
-    return number * number
-}
-
 //3.简写参数名
 travel7_1 { place in
     return "I'm going to \(place) in my car"
@@ -549,6 +539,8 @@ counterR("London")
 counterR("London")
 counterR("London")
 
+var title7  = "swift学习第7天"
+
 //Summary
 /**
  * 1.您可以为变量分配闭包，然后在以后调用它们。
@@ -558,3 +550,154 @@ counterR("London")
  * 5.Swift自动提供诸如$0和$1之类的速记参数名，但并非所有人都使用它们。
  * 6.如果在闭包中使用外部值，那么将捕获这些值，以便闭包稍后可以引用它们。
  */
+
+//第8天 7.10 8/100
+//结构、属性和方法
+//1.创建自己的结构
+struct Sport {
+    var name: String
+}
+var tennis = Sport(name: "Tennis")
+tennis.name = "Lawn tennis"
+//2.计算属性
+
+struct Sport8 {
+    var name: String
+    var isOlympicSport: Bool
+    var olympicStatus: String {
+        if isOlympicSport {
+            return "\(name)is an Olympic sport"
+        } else {
+            return "\(name) is not an Olympic sport"
+        }
+    }
+}
+let chessBoxing = Sport8(name: "Chessboxing", isOlympicSport: false)
+print(chessBoxing.olympicStatus)
+
+//3.属性观察者
+struct Progress {
+    var task: String
+    var amount: Int {
+        didSet {
+            print("\(task) is now \(amount)% complete")
+        }
+    }
+}
+
+var progress = Progress(task: "Loading data", amount: 5)
+progress.amount = 1
+
+//4.方法
+struct City {
+    var population: Int
+    func collectTaxes() -> Int {
+        return population * 1000
+    }
+}
+let london = City(population: 9_000_000)
+london.collectTaxes()
+
+//5.mutating 方法 只允许变量示例调用
+struct Person {
+    var name: String
+    mutating func makeAnonymous() {
+        name = "Anonymous"
+    }
+}
+var person = Person(name: "Ed")
+person.makeAnonymous()
+
+//6.字符串的属性和方法
+let string = "Do or do not, there is no try."
+print(string.count)
+print(string.hasPrefix("Do"))
+print(string.uppercased())
+print(string.sorted())
+//7.数组的属性和方法
+var toys = ["Woody"]
+print(toys.count)
+toys.append("Buzz")
+toys.firstIndex(of: "Buzz")
+print(toys.sorted())
+toys.remove(at: 0)
+
+//Summary
+//nil
+
+//第9天 7.11 9/100
+//结构体 二
+//1.初始化
+struct User {
+    var userName: String
+    
+    init() {
+        userName = "Anonymous"
+        print("Creating a new user!")
+    }
+}
+
+var user = User()
+user.userName = "twostraws"
+//2.引用当前实例
+struct Person9 {
+    var name: String
+    init(name: String) {
+        print("\(name) was born!")
+        self.name = name
+    }
+}
+//3.惰性属性 懒加载
+struct FamilyTree {
+    init() {
+        print("Creating family tree!")
+    }
+}
+struct Person91 {
+    var name: String
+    lazy var familyTree = FamilyTree()
+    init(name: String) {
+        self.name = name
+    }
+}
+var ed = Person91(name: "Ed")
+ed.familyTree
+//4.静态特性和方法
+struct Student {
+    static var classSize = 0
+    var name: String
+    init(name: String) {
+        self.name = name
+        Student.classSize += 1
+    }
+}
+Student(name: "Ed")
+Student(name: "Taylor")
+print(Student.classSize)
+
+//5.访问控制
+struct Person95 {
+    private var id: String
+    init(id: String) {
+        self.id = id
+    }
+    func identify() -> String {
+        return "My social security number is \(id)"
+    }
+}
+
+var title  = "swift学习第8天"
+
+//Summary
+/**
+ * 1.可以使用结构创建自己的类型，结构可以有自己的属性和方法。
+ * 2.可以使用存储属性或使用计算属性动态计算值。
+ * 3.如果要更改方法内部的属性，则必须将其标记为 mutating
+ * 4.初始值设定项是创建结构的特殊方法。默认情况下，您将获得
+ * 一个memberwise初始值设定项，但如果您创建自己的初始值设定项，则必须为所有属性指定一个值。
+ * 5.使用self常量引用方法中结构的当前实例。
+ * 6.lazy关键字告诉Swift只在第一次使用属性时创建它们。
+ * 7.可以使用static关键字在结构的所有实例之间共享属性和方法。
+ * 8.访问控制允许您限制哪些代码可以使用属性和方法。
+ */
+
