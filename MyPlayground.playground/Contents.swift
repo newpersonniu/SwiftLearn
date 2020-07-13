@@ -686,7 +686,7 @@ struct Person95 {
     }
 }
 
-var title  = "swift学习第8天"
+var title9  = "swift学习第9天"
 
 //Summary
 /**
@@ -701,3 +701,96 @@ var title  = "swift学习第8天"
  * 8.访问控制允许您限制哪些代码可以使用属性和方法。
  */
 
+//第10天 7.13 10/100
+// 类  (和struct类似，但又有5个不同)
+//1.创建自己的类 不同之一：没有自己的默认初始化，需要自己写
+class Dog {
+    var name: String
+    var breed: String
+    init (name: String, breed: String) {
+        self.name = name
+        self.breed = breed
+    }
+}
+let poppy = Dog(name: "Poppy", breed: "Poodle")
+
+//2.继承 不同：能够基于一个存在的类去创建一个类，它继承了原始类的所有属性和方法，并且可以在上面添加自己的属性和方法
+class Poodle: Dog {
+    init(name: String) {
+        super.init(name: name, breed: "Poodle")
+    }
+}
+
+//3.重载
+class Dog3 {
+    func makeNoise() {
+        print("Woof!")
+    }
+}
+class Poodle3: Dog3 {
+    override func makeNoise() {
+         print("Yip!")
+    }
+}
+let poppy3 = Poodle3()
+poppy3.makeNoise()
+
+//4.final类 不能被继承和方法重写
+final class Dog4 {
+    var name: String
+    var breed: String
+
+    init(name: String, breed: String) {
+        self.name = name
+        self.breed = breed
+    }
+}
+//5.对象拷贝 不同之三：copy不一样
+class Singer {
+    var name = "Taylor Swift"
+}
+var singer = Singer()
+var singerCopy = singer
+singerCopy.name = "Justin Bieber"
+print(singer.name)
+
+//6.去初始化器 不同之四：去初始化器-当类的实例被破坏时运行的代码
+class Person10 {
+    var name = "John Doe"
+    init() {
+        print("\(name) is alive!")
+    }
+    func printGreeting() {
+        print("Hello, I'm \(name)")
+    }
+    deinit {
+        print("\(name) is no more!")
+    }
+}
+
+for _ in 1...3 {
+    let person10 = Person10()
+    person10.printGreeting()
+}
+
+//7.可变 不同之五：如果您有一个带有变量属性的常量结构，则不能更改该属性，因为该结构本身是常量。类的实例可以
+class Singer7 {
+    var name = "Taylor Swift"
+}
+
+let taylor7 = Singer()
+taylor7.name = "Ed Sheeran"
+print(taylor7.name)
+
+var title10  = "swift学习第10天"
+
+//Summary
+/**
+ * 1.类和结构是相似的，因为它们都可以使用属性和方法创建自己的类型。
+ * 2.一个类可以从另一个类继承，它获得父类的所有属性和方法。类层次结构很常见——一个类基于另一个类，而另一个类本身又基于另一个类。
+ * 3.您可以用final关键字标记一个类，这将阻止其他类从中继承。
+ * 4.方法重写允许子类用新实现替换其父类中的方法。
+ * 5.当两个变量指向同一个类实例时，它们都指向同一个内存块—更改其中一个会更改另一个。
+ * 6.类可以有一个去初始化器，它是在类的实例被破坏时运行的代码。
+ * 7.类不像structs那样强制使用常量——如果属性被声明为变量，那么无论类实例是如何创建的，它都可以被更改。
+ */
