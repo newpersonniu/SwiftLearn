@@ -787,10 +787,95 @@ var title10  = "swift学习第10天"
 //Summary
 /**
  * 1.类和结构是相似的，因为它们都可以使用属性和方法创建自己的类型。
- * 2.一个类可以从另一个类继承，它获得父类的所有属性和方法。类层次结构很常见——一个类基于另一个类，而另一个类本身又基于另一个类。
+ * 2.一个类可以从另一个类继承，它获得父类的所有属性和方法。
+ * 类层次结构很常见——一个类基于另一个类，而另一个类本身又基于另一个类。
  * 3.您可以用final关键字标记一个类，这将阻止其他类从中继承。
  * 4.方法重写允许子类用新实现替换其父类中的方法。
  * 5.当两个变量指向同一个类实例时，它们都指向同一个内存块—更改其中一个会更改另一个。
  * 6.类可以有一个去初始化器，它是在类的实例被破坏时运行的代码。
  * 7.类不像structs那样强制使用常量——如果属性被声明为变量，那么无论类实例是如何创建的，它都可以被更改。
+ */
+
+//第11天 7.14 11/100
+//协议和扩展
+//1.协议
+protocol Identifiable {
+    var id: String { get set }
+}
+struct User11: Identifiable {
+    var id :String
+}
+func displayID(thing: Identifiable) {
+    print("My ID is \(thing.id)")
+}
+//2.协议继承
+protocol Payable {
+    func calculateWages() -> Int
+}
+
+protocol NeedsTraining {
+    func study()
+}
+
+protocol HasVacation {
+    func takeVacation(days: Int)
+}
+
+protocol Employee: Payable, NeedsTraining, HasVacation { }
+
+//3.扩展
+extension Int {
+    func squared() -> Int {
+        return self * self
+    }
+}
+let number11 = 8
+number11.squared()
+extension Int {
+    var isEven: Bool {
+        return self % 2 == 0
+    }
+}
+number11.isEven
+//4.协议扩展
+let pythons11 = ["Eric", "Graham", "John", "Michael", "Terry", "Terry"]
+let beatles11 = Set(["John", "Paul", "George", "Ringo"])
+extension Collection {
+    func summarize() {
+        print("There are \(count) of us:")
+
+        for name in self {
+            print(name)
+        }
+    }
+}
+pythons11.summarize()
+beatles11.summarize()
+//5.面向协议编程
+protocol Identifiable111 {
+    var id: String { get set }
+    func identify()
+}
+extension Identifiable111 {
+    func identify() {
+        print("My ID is \(id).")
+    }
+}
+
+struct User111: Identifiable111 {
+    var id: String
+}
+
+let twostraws = User111(id: "twostraws")
+twostraws.identify()
+
+var title11 = "swift学习第11天"
+
+//Summary
+/**
+ * 1.协议描述了符合标准的类型必须具有的方法和属性，但不提供这些方法的实现。
+ * 2.您可以在其他协议之上构建协议，类似于类。
+ * 3.扩展允许您向特定类型（如Int）添加方法和计算属性。
+ * 4.协议扩展允许您向协议添加方法和计算属性。
+ * 5.面向协议的编程是将你的应用程序架构设计成一系列协议，然后使用协议扩展来提供默认的方法实现。
  */
