@@ -879,3 +879,105 @@ var title11 = "swift学习第11天"
  * 4.协议扩展允许您向协议添加方法和计算属性。
  * 5.面向协议的编程是将你的应用程序架构设计成一系列协议，然后使用协议扩展来提供默认的方法实现。
  */
+
+//第12天 7.15 12/100
+//可选项
+//1.处理丢失的数据
+var age12: Int? = nil
+age12 = 38
+//2.Unwrapping optionals 拆解可选
+var name12: String? = nil
+if let unwrapped = name12 {
+    print("\(unwrapped.count) letters")
+} else {
+    print("Missing name.")
+}
+//3.Unwrapping with guard
+func greet(_ name: String?) {
+    guard let unwrapped = name else {
+        print("You didn't provide a name!")
+        return
+    }
+    print("Hello, \(unwrapped)!")
+}
+//4.强制解包
+let str12 = "5"
+let num12 = Int(str12)
+let num121 = Int(str12)!
+//5.隐式解包可选
+let age125: Int! = nil
+//6.nil 合并,解包并提供默认值
+func username126(for id: Int) -> String? {
+    if id == 1 {
+        return "Taylor Swift"
+    } else {
+        return nil
+    }
+}
+let user126 = username126(for: 15) ?? "Anonymous"
+//7.可选链
+let names = ["John", "Paul", "George", "Ringo"]
+let beatle = names.first?.uppercased()
+//8.Optional try
+enum PasswordError12: Error {
+    case obvious
+}
+
+func checkPassword12(_ password: String) throws -> Bool {
+    if password == "password" {
+        throw PasswordError12.obvious
+    }
+
+    return true
+}
+
+if let result = try? checkPassword12("password") {
+    print("Result was \(result)")
+} else {
+    print("D'oh.")
+}
+
+try! checkPassword("sekrit")
+print("OK!")
+//9.初始化器失败
+struct Person12 {
+    var id: String
+    
+    init?(id: String) {
+        if id.count == 9 {
+            self.id = id
+        } else {
+            return nil
+        }
+    }
+}
+//10.类型转换
+class Animal { }
+class Fish: Animal { }
+
+class Dog12: Animal {
+    func makeNoise() {
+        print("Woof!")
+    }
+}
+let pets = [Fish(), Dog12(), Fish(), Dog12()]
+for pet in pets {
+    if let dog = pet as? Dog12 {
+         dog.makeNoise()
+    }
+}
+
+var title12 = "swift学习第12天"
+
+//Summary
+/**
+ * 1.Optionals让我们以清晰明确的方式表示没有值。
+ * 2.Swift不会让我们在没有拆包的情况下使用可选值，无论是使用if let还是使用guard let。
+ * 3.可以使用！强制展开选项，但如果尝试强制展开为nil，则代码将崩溃。
+ * 4.隐式解包没有常规的optionals安全检查。
+ * 5.您可以使用nil coalescing来展开一个可选的，并在内部没有任何内容的情况下提供一个默认值。
+ * 6.可选链接允许我们编写代码来操作一个可选的，但是如果可选的结果是空的，那么代码就会被忽略。
+ * 7.你可以使用try？把抛出函数转换成可选的返回值，或者try！（会在抛出错误时崩溃）。
+ * 8.如果你需要初始化器在输入错误时失败，使用init?()以生成失败的初始值设定项。
+ * 9.可以使用类型转换将一种对象转换为另一种类型。
+ */
