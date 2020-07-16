@@ -981,3 +981,160 @@ var title12 = "swift学习第12天"
  * 8.如果你需要初始化器在输入错误时失败，使用init?()以生成失败的初始值设定项。
  * 9.可以使用类型转换将一种对象转换为另一种类型。
  */
+
+//巩固 1
+//第13天 7.16 13/100
+//Swift review，第一天
+//1.变量和常量
+var name13 = "Tim McGraw"
+let name131 = "Tim McGraw"
+name13 = "Romeo"
+//2.数据类型
+//字符串、int
+var name132: String = "Tim McGraw"
+var age132: Int = 25
+//Float and Double
+var latitude: Double
+latitude = 36.166667
+
+var longitude: Float
+longitude = -86.783333
+longitude = -86.783333
+longitude = -186.783333
+longitude = -1286.783333
+longitude = -12386.783333
+longitude = -123486.783333
+longitude = -1234586.783333
+//Bool
+var stayOutTooLate: Bool
+stayOutTooLate = true
+//3.运算符 +-*/ %
+var a = 10
+a = a + 1
+a = a - 1
+a = a * a
+a += 1
+var name1 = "Tim McGraw"
+var name2 = "Romeo"
+var both = name1 + " and " + name2
+//比较操作符 >< == >= <= ! !=
+var b = 10
+var name133 = "Tim McGraw"
+name133 == "Tim McGraw"
+name133 != "Tim McGraw"
+//4.字符串插入
+var age134 = 25
+"You are \(age134) years old. In another \(age134) years you will be \(age134 * 2)."
+
+//5.数组
+var songs = ["Shake it Off", "You Belong with Me", "Back to December"]
+type(of: songs)
+songs[0]
+var songs1: [Any] = ["Shake it Off", "You Belong with Me", "Back to December", 3]
+type(of: songs1)
+//数组创建
+var songs2: [String] = []
+var songs21 = [String]()
+//Array 运算
+var songs22 = ["Today was a Fairytale", "Welcome to New York", "Fifteen"]
+var both13 = songs + songs22
+both13 += ["Everything has Changed"]
+
+//6.字典
+var personDic = [
+                "first": "Taylor",
+                "middle": "Alison",
+                "last": "Swift",
+                "month": "December",
+                "website": "taylorswift.com"
+            ]
+
+personDic["middle"]
+personDic["month"]
+
+//7.条件语句
+var action127: String
+var person127 = "hater"
+
+if person127 == "hater" {
+    action127 = "hate"
+} else if person127 == "player" {
+    action127 = "play"
+} else {
+    action127 = "cruise"
+}
+//多个条件
+var stayOutTooLate127 = true
+var nothingInBrain127 = true
+
+if stayOutTooLate127 && nothingInBrain127 {
+    action127 = "cruise"
+}
+//取反
+if !stayOutTooLate127 && !nothingInBrain127 {
+    action127 = "cruise"
+}
+
+//8.循环
+var str138 = "Fakers gonna"
+for _ in 1 ... 5 {
+//    范围符 ..< ...
+    str138 += " fake"
+}
+print(str138)
+//数组遍历
+for song in songs {
+    print("My favorite song is \(song)")
+}
+for i in 0 ..< songs.count {
+    print("\(songs[i]) gonna \(songs[i])")
+}
+//嵌套循环
+var people138 = ["players", "haters", "heart-breakers", "fakers"]
+var actions138 = ["play", "hate", "break", "fake"]
+
+for i in 0 ..< people138.count {
+    var str = "\(people138[i]) gonna"
+
+    for _ in 1 ... 5 {
+        str += " \(actions138[i])"
+    }
+
+    print(str)
+}
+//While 循环
+var counter138 = 0
+while true {
+    print("Counter is now \(counter138)")
+    counter138 += 1
+
+    if counter138 == 556 {
+        break
+    }
+    if counter138 == 554 {
+        continue
+    }
+}
+
+//9.Switch
+let studioAlbums = 5
+
+switch studioAlbums {
+case 0...1:
+    print("You're just starting out")
+
+case 2...3:
+    print("You're a rising star")
+
+case 4...5:
+    print("You're world famous!")
+    fallthrough
+
+default:
+    print("Have you done something new?")
+}
+
+var title13 = "swift学习第13天"
+
+//Summary
+//nil
