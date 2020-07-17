@@ -1138,3 +1138,125 @@ var title13 = "swift学习第13天"
 
 //Summary
 //nil
+
+//巩固 2
+//第14天 7.17 14/100
+//1.函数
+func printAlbumRelease(name: String, year: Int) {
+    print("\(name) was released in \(year)")
+}
+printAlbumRelease(name: "Fearless", year: 2008)
+//外部 内部参数名
+func countLettersInString(myString str: String) {
+    print("The string \(str) has \(str.count) letters.")
+}
+countLettersInString(myString: "Hello")
+
+func countLettersInString(_ str: String) {
+    print("The string \(str) has \(str.count) letters.")
+}
+countLettersInString("Hello")
+//返回值
+func albumIsTaylor(name: String) -> Bool {
+    if name == "Taylor Swift" { return true }
+    if name == "Fearless" { return true }
+    if name == "Speak Now" { return true }
+    if name == "Red" { return true }
+    if name == "1989" { return true }
+    return false
+}
+ albumIsTaylor(name: "Red")
+//2.可选
+func getHaterStatus(weather: String) -> String? {
+    if weather == "sunny" {
+        return nil
+    } else {
+        return "Hate"
+    }
+}
+var status: String?
+status = getHaterStatus(weather: "rainy")
+//强制展开
+print("\(status!)")
+//隐式解包
+let status14: Int! = nil
+//3.可选链接
+func albumReleased(year: Int) -> String? {
+    switch year {
+    case 2006: return "Taylor Swift"
+    case 2008: return "Fearless"
+    case 2010: return "Speak Now"
+    case 2012: return "Red"
+    case 2014: return "1989"
+    default: return nil
+    }
+}
+let album14 = albumReleased(year: 2020)?.count
+//nil 合并 提供默认值
+let album141 = albumReleased(year: 2006) ?? "unknown"
+print("The album is \(album141)")
+
+//4.枚举
+enum WeatherType {
+    case sun
+    case cloud
+    case rain
+    case wind(speed: Int)
+    case snow
+}
+func getHaterStatus(weather: WeatherType) -> String? {
+    switch weather {
+    case .sun:
+        return nil
+    case .wind(let speed) where speed < 10:
+        return "meh"
+    case .cloud, .wind:
+        return "dislike"
+    case .rain, .snow:
+        return "hate"
+    }
+}
+
+getHaterStatus(weather: WeatherType.wind(speed: 5))
+//5.结构体
+struct Person135 {
+    var clothes: String
+    var shoes: String
+
+    func describe() {
+        print("I like wearing \(clothes) with \(shoes)")
+    }
+}
+let taylor135 = Person135(clothes: "T-shirts", shoes: "sneakers")
+var taylorCopy = taylor135
+taylorCopy.shoes = "flip flops"
+print(taylor135)
+print(taylorCopy)
+//6.类
+class Singer156 {
+    var name: String
+    var age: Int
+
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+
+    func sing() {
+        print("La la la la")
+    }
+}
+class HeavyMetalSinger: Singer156 {
+    var noiseLevel: Int
+
+    init(name: String, age: Int, noiseLevel: Int) {
+        self.noiseLevel = noiseLevel
+        super.init(name: name, age: age)
+    }
+
+    override func sing() {
+        print("Grrrrr rargh rargh rarrrrgh!")
+    }
+}
+//Summary
+//nil
