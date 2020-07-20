@@ -1260,3 +1260,141 @@ class HeavyMetalSinger: Singer156 {
 }
 //Summary
 //nil
+
+//巩固 3
+//第15天 7.20 15/100
+//1.属性
+struct Person15 {
+    var clothes: String
+    var shoes: String
+
+    func describe() {
+        print("I like wearing \(clothes) with \(shoes)")
+    }
+}
+
+let taylor15 = Person15(clothes: "T-shirts", shoes: "sneakers")
+let other15 = Person15(clothes: "short skirts", shoes: "high heels")
+taylor15.describe()
+other15.describe()
+//观察者属性
+struct Person151 {
+    var clothes: String {
+        willSet {
+            updateUI(msg: "I'm changing from \(clothes) to \(newValue)")
+        }
+        didSet {
+            updateUI(msg: "I just changed from \(oldValue) to \(clothes)")
+        }
+    }
+    var age: Int
+
+    var ageInDogYears: Int {
+        get {
+            return age * 7
+        }
+    }
+}
+func updateUI(msg: String) {
+    print(msg)
+}
+var taylor151 = Person151(clothes: "T-shirts", age: 22)
+taylor151.clothes = "short skirts"
+//计算属性
+taylor151.ageInDogYears
+
+//2.静态属性和方法
+struct TaylorFan {
+    static var favoriteSong = "Look What You Made Me Do"
+    var name: String
+    var age: Int
+    
+}
+
+let fan = TaylorFan(name: "James", age: 25)
+print(TaylorFan.favoriteSong)
+
+//3.访问控制
+class TaylorFan153 {
+    private var name: String?
+}
+
+//4.多态性与类型转换
+class Album {
+    var name: String
+
+    init(name: String) {
+        self.name = name
+    }
+
+    func getPerformance() -> String {
+        return "The album \(name) sold lots"
+    }
+}
+
+class StudioAlbum: Album {
+    var studio: String
+
+    init(name: String, studio: String) {
+        self.studio = studio
+        super.init(name: name)
+    }
+
+    override func getPerformance() -> String {
+        return "The studio album \(name) sold lots"
+    }
+}
+
+class LiveAlbum: Album {
+    var location: String
+
+    init(name: String, location: String) {
+        self.location = location
+        super.init(name: name)
+    }
+
+    override func getPerformance() -> String {
+        return "The live album \(name) sold lots"
+    }
+}
+var taylorSwift = StudioAlbum(name: "Taylor Swift", studio: "The Castles Studios")
+var fearless = StudioAlbum(name: "Speak Now", studio: "Aimeeland Studio")
+var iTunesLive = LiveAlbum(name: "iTunes Live from SoHo", location: "New York")
+
+var allAlbums: [Album] = [taylorSwift, fearless, iTunesLive]
+
+for album in allAlbums {
+    print(album.getPerformance())
+}
+//使用类型转换转换类型
+for album in allAlbums {
+    print(album.getPerformance())
+
+    if let studioAlbum = album as? StudioAlbum {
+        print(studioAlbum.studio)
+    } else if let liveAlbum = album as? LiveAlbum {
+        print(liveAlbum.location)
+    }
+}
+
+var allAlbums155: [Album] = [taylorSwift, fearless]
+
+for album in allAlbums155 {
+    let studioAlbum = album as! StudioAlbum
+    print(studioAlbum.studio)
+}
+for album in allAlbums155 as? [LiveAlbum] ?? [LiveAlbum]() {
+    print(album.location)
+}
+
+//5.闭包
+let vw = UIView()
+UIView.animate(withDuration: 0.5, animations: {
+    vw.alpha = 0
+})
+UIView.animate(withDuration: 0.5) {
+    vw.alpha = 0;
+}
+
+//Summary
+//nil
